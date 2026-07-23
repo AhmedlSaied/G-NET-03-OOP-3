@@ -195,4 +195,28 @@ namespace OOPAssignment03
     }
 
     #endregion
+    #region UTILITY HELPER
+
+    public static class BookingHelper
+    {
+        private static int bookingCounter = 0;
+
+        public static decimal CalcGroupDiscount(int numberOfTickets, decimal pricePerTicket)
+        {
+            decimal total = numberOfTickets * pricePerTicket;
+            if (numberOfTickets >= 5)
+            {
+                total *= 0.90m;
+            }
+            return total;
+        }
+
+        public static string GenerateBookingReference()
+        {
+            return $"BK-{++bookingCounter}";
+        }
+    }
+
+    #endregion
+
 }
