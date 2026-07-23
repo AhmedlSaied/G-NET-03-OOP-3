@@ -218,5 +218,48 @@ namespace OOPAssignment03
     }
 
     #endregion
+    #region PROGRAM MAIN
 
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            #region PART 02: PRACTICAL EXECUTION
+
+            Cinema cinema = new Cinema("Grand Cinema");
+
+            // Open Cinema & Start Projector
+            cinema.OpenCinema();
+            Console.WriteLine();
+
+            // Create each ticket type
+            StandardTicket ticket1 = new StandardTicket("Inception", 120m, "A-5");
+            VIPTicket ticket2 = new VIPTicket("Avengers", 200m, true);
+            IMAXTicket ticket3 = new IMAXTicket("Dune", 180m, false);
+
+            cinema.AddTicket(ticket1);
+            cinema.AddTicket(ticket2);
+            cinema.AddTicket(ticket3);
+
+            // Print All Tickets
+            cinema.PrintAllTickets();
+
+            // Print Statistics & Helper outputs
+            Console.WriteLine("\n========== Statistics ==========");
+            Console.WriteLine($"Total Tickets Created: {Ticket.GetTotalTickets()}\n");
+
+            Console.WriteLine($"Booking Ref 1: {BookingHelper.GenerateBookingReference()}");
+            Console.WriteLine($"Booking Ref 2: {BookingHelper.GenerateBookingReference()}\n");
+
+            decimal groupDiscountTotal = BookingHelper.CalcGroupDiscount(5, 100m);
+            Console.WriteLine($"Group Discount (5 x 100 EGP): {groupDiscountTotal:F0} EGP (10% off)");
+
+            // Close Cinema & Stop Projector
+            cinema.CloseCinema();
+
+            #endregion
+        }
+    }
+
+    #endregion
 }
