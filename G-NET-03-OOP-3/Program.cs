@@ -35,4 +35,57 @@ namespace OOPAssignment03
     }
 
     #endregion
+    #region BASE TICKET CLASS
+
+    public class Ticket
+    {
+        private static int totalTickets = 0;
+
+        private string movieName = "Unknown";
+        private decimal price = 1m;
+
+        public int TicketId { get; }
+
+        public string MovieName
+        {
+            get => movieName;
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    movieName = value;
+                }
+            }
+        }
+
+        public decimal Price
+        {
+            get => price;
+            set
+            {
+                if (value > 0)
+                {
+                    price = value;
+                }
+            }
+        }
+
+        public decimal PriceAfterTax => Price * 1.14m;
+
+        public Ticket(string movieName, decimal price)
+        {
+            TicketId = ++totalTickets;
+            MovieName = movieName;
+            Price = price;
+        }
+
+        public static int GetTotalTickets() => totalTickets;
+
+        public override string ToString()
+        {
+            return $"Ticket #{TicketId} | {MovieName} | Price: {Price:F0} EGP | After Tax: {PriceAfterTax:F2} EGP";
+        }
+    }
+
+    #endregion
 }
