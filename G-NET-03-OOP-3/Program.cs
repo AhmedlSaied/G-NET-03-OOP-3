@@ -142,4 +142,57 @@ namespace OOPAssignment03
     }
 
     #endregion
+    #region CINEMA CLASS
+
+    public class Cinema
+    {
+        public string CinemaName { get; set; }
+        private readonly Projector projector;
+        private readonly Ticket[] tickets = new Ticket[20];
+
+        public Cinema(string cinemaName)
+        {
+            CinemaName = cinemaName;
+            projector = new Projector(); // Composition (Lifetime bound to Cinema)
+        }
+
+        public bool AddTicket(Ticket t)
+        {
+            for (int i = 0; i < tickets.Length; i++)
+            {
+                if (tickets[i] == null)
+                {
+                    tickets[i] = t;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void PrintAllTickets()
+        {
+            Console.WriteLine("========== All Tickets ==========");
+            for (int i = 0; i < tickets.Length; i++)
+            {
+                if (tickets[i] != null)
+                {
+                    Console.WriteLine(tickets[i]);
+                }
+            }
+        }
+
+        public void OpenCinema()
+        {
+            Console.WriteLine("========== Cinema Opened ==========");
+            projector.Start();
+        }
+
+        public void CloseCinema()
+        {
+            Console.WriteLine("\n========== Cinema Closed ==========");
+            projector.Stop();
+        }
+    }
+
+    #endregion
 }
