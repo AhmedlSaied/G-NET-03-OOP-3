@@ -88,4 +88,58 @@ namespace OOPAssignment03
     }
 
     #endregion
+    #region CHILD TICKET CLASSES
+
+    public class StandardTicket : Ticket
+    {
+        public string SeatNumber { get; set; }
+
+        public StandardTicket(string movieName, decimal price, string seatNumber)
+            : base(movieName, price)
+        {
+            SeatNumber = seatNumber;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} | Seat: {SeatNumber}";
+        }
+    }
+
+    public class VIPTicket : Ticket
+    {
+        public bool LoungeAccess { get; set; }
+        public decimal ServiceFee { get; } = 50m;
+
+        public VIPTicket(string movieName, decimal price, bool loungeAccess)
+            : base(movieName, price)
+        {
+            LoungeAccess = loungeAccess;
+        }
+
+        public override string ToString()
+        {
+            string loungeStr = LoungeAccess ? "Yes" : "No";
+            return $"{base.ToString()} | Lounge: {loungeStr} | Service Fee: {ServiceFee:F0} EGP";
+        }
+    }
+
+    public class IMAXTicket : Ticket
+    {
+        public bool Is3D { get; set; }
+
+        public IMAXTicket(string movieName, decimal price, bool is3D)
+            : base(movieName, price + (is3D ? 30m : 0m))
+        {
+            Is3D = is3D;
+        }
+
+        public override string ToString()
+        {
+            string is3DStr = Is3D ? "Yes" : "No";
+            return $"{base.ToString()} | IMAX 3D: {is3DStr}";
+        }
+    }
+
+    #endregion
 }
